@@ -62,7 +62,7 @@ export default function About() {
         <p className="max-w-3xl mx-auto text-lg text-gray-700">
           Nous sommes une association sous l’{" "}
           <span className="font-semibold text-green-600">
-            Association des Étudiants Nigériens à Zaria (AENIZ)
+            Association des Étudiants Internationals (ISA)
           </span>
           . Notre mission est d’unir les étudiants nigériens à Zaria sous un même
           cadre d’entraide, d’intégration culturelle et de développement académique.
