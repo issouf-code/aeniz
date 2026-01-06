@@ -24,9 +24,9 @@ export default function Navbar() {
 
             {/* Desktop links */}
             <div className="hidden md:flex items-center gap-6">
-              <Link to="/" className="text-gray-700 hover:text-blue-600">Home</Link>
+              <Link to="/" className="text-gray-700 hover:text-blue-600">Accueil</Link>
               <Link to="/guide" className="text-gray-700 hover:text-blue-600">Guide</Link>
-              <Link to="/about" className="text-gray-700 hover:text-blue-600">About</Link>
+              <Link to="/about" className="text-gray-700 hover:text-blue-600">Apropos</Link>
               <Link to="/contact" className="text-gray-700 hover:text-blue-600">Contact</Link>
             </div>
 
