@@ -2,144 +2,150 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-orange-50 via-white to-green-50 p-6 flex flex-col items-center">
-      {/* Header */}
-      <section className="text-center max-w-3xl mb-10">
-        <h1 className="text-3xl font-bold text-orange-600 mb-2">
+    <main className="min-h-screen bg-gray-50 px-6 py-12 sm:px-12">
+      {/* ================= HEADER ================= */}
+      <header className="mx-auto mb-12 max-w-3xl text-center">
+        <h1 className="mb-3 text-3xl font-bold text-orange-600">
           Contactez l’Association des Étudiants Nigériens à Zaria (AENIZ)
         </h1>
         <p className="text-gray-700">
-          Nous serons ravis de répondre à vos questions ou de vous assister dans
-          vos démarches à Zaria. N’hésitez pas à nous écrire ou à venir à notre
-          siège.
+          Nous sommes disponibles pour répondre à vos questions et vous assister
+          dans vos démarches académiques et sociales à Zaria.
         </p>
-      </section>
+      </header>
 
-      {/* Contact Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl">
-        {/* Contact Information */}
-        <div className="bg-white p-6 rounded-2xl shadow-md border-t-4 border-orange-500">
-          <h2 className="text-2xl font-semibold text-green-700 mb-4">
+      {/* ================= CONTENT ================= */}
+      <section className="mx-auto grid max-w-5xl grid-cols-1 gap-10 md:grid-cols-2">
+        {/* ================= CONTACT INFO ================= */}
+        <article className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+          <h2 className="mb-4 border-l-4 border-orange-500 pl-3 text-2xl font-semibold text-green-700">
             Informations de contact
           </h2>
-          <p className="text-gray-700 mb-3">
-            <strong>Adresse :</strong> Samaru, Ahmadu Bello University, Zaria,
-            Kaduna State, Nigeria.
-          </p>
-          <p className="text-gray-700 mb-3">
-            <strong>Téléphone :</strong>{" "}
-            <a
-              href="tel:+2348102345678"
-              className="text-green-700 hover:underline"
-            >
-              +234 810 234 5678
-            </a>
-          </p>
-          <p className="text-gray-700 mb-3">
-            <strong>Email :</strong>{" "}
-            <a
-              href="mailto:AENIZ@gmail.com"
-              className="text-orange-600 hover:underline"
-            >
-              AENIZ@gmail.com
-            </a>
-          </p>
 
-          <h3 className="text-xl font-semibold text-orange-600 mt-6 mb-2">
+          <address className="not-italic space-y-3 text-gray-700">
+            <p>
+              <span className="font-semibold">Adresse :</span> Samaru, Ahmadu
+              Bello University, Zaria, Kaduna State, Nigeria.
+            </p>
+
+            <p>
+              <span className="font-semibold">Téléphone :</span>{" "}
+              <a
+                href="tel:+2348102345678"
+                className="text-green-700 hover:underline focus:outline-none focus:ring-2 focus:ring-green-600"
+              >
+                +234 810 234 5678
+              </a>
+            </p>
+
+            <p>
+              <span className="font-semibold">Email :</span>{" "}
+              <a
+                href="mailto:AENIZ@gmail.com"
+                className="text-orange-600 hover:underline focus:outline-none focus:ring-2 focus:ring-orange-500"
+              >
+                AENIZ@gmail.com
+              </a>
+            </p>
+          </address>
+
+          <h3 className="mt-6 mb-2 text-xl font-semibold text-orange-600">
             Réseaux sociaux
           </h3>
-          <ul className="text-gray-700 space-y-2">
+
+          <ul className="space-y-2 text-gray-700">
             <li>
-              🌍 <strong>Facebook: </strong>
+              <span className="font-semibold">Facebook :</span>{" "}
               <a
                 href="https://web.facebook.com/profile.php?id=61582105559035"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-green-700 hover:underline"
+                className="text-green-700 hover:underline focus:outline-none focus:ring-2 focus:ring-green-600"
               >
-                Association des étudiants nigérien à Zaria - AENIZ, ABU Zaria
+                Association des étudiants nigériens à Zaria (AENIZ)
               </a>
             </li>
 
             <li>
-              💬 <strong>WhatsApp: </strong>
+              <span className="font-semibold">WhatsApp :</span>{" "}
               <a
                 href="https://wa.me/2348102345678"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-orange-600 hover:underline"
+                className="text-orange-600 hover:underline focus:outline-none focus:ring-2 focus:ring-orange-500"
               >
-                Chat via WhatsApp
+                Discuter via WhatsApp
               </a>
             </li>
           </ul>
 
-          <p className="mt-6 text-gray-600 italic">
-            Notre bureau est ouvert du lundi au samedi, de 8h à 18h.
+          <p className="mt-6 italic text-gray-600">
+            Bureau ouvert du lundi au samedi, de 8h à 18h.
           </p>
-        </div>
+        </article>
 
-        {/* Contact Form */}
-        <div className="bg-white p-6 rounded-2xl shadow-md border-t-4 border-green-600">
-          <h2 className="text-2xl font-semibold text-orange-600 mb-4">
+        {/* ================= CONTACT FORM ================= */}
+        <article className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+          <h2 className="mb-4 border-l-4 border-green-600 pl-3 text-2xl font-semibold text-orange-600">
             Envoyez-nous un message
           </h2>
-          <form className="space-y-4">
+
+          <form className="space-y-4" noValidate>
             <div>
               <label
                 htmlFor="name"
-                className="block text-gray-700 font-medium mb-1"
+                className="mb-1 block font-medium text-gray-700"
               >
                 Nom complet
               </label>
               <input
-                type="text"
                 id="name"
-                placeholder="Entrez votre nom"
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-400 focus:outline-none"
+                type="text"
+                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Votre nom"
               />
             </div>
 
             <div>
               <label
                 htmlFor="email"
-                className="block text-gray-700 font-medium mb-1"
+                className="mb-1 block font-medium text-gray-700"
               >
-                Adresse Email
+                Adresse email
               </label>
               <input
-                type="email"
                 id="email"
-                placeholder="exemple@gmail.com"
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                type="email"
+                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                placeholder="exemple@email.com"
               />
             </div>
 
             <div>
               <label
                 htmlFor="message"
-                className="block text-gray-700 font-medium mb-1"
+                className="mb-1 block font-medium text-gray-700"
               >
                 Message
               </label>
               <textarea
                 id="message"
                 rows="5"
-                placeholder="Écrivez votre message ici..."
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-400 focus:outline-none"
-              ></textarea>
+                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Écrivez votre message..."
+              />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-orange-500 to-green-600 text-white py-2 rounded-md hover:opacity-90 transition"
+              className="w-full rounded-md bg-green-700 py-2 font-medium text-white transition hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
             >
               Envoyer le message
             </button>
           </form>
-        </div>
-      </div>
-    </div>
+        </article>
+      </section>
+    </main>
   );
 };
 
