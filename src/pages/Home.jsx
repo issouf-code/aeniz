@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 
-// 🖼 Import assets
+// Assets
 import president from "../assets/president.jpg";
 import image1 from "../assets/image1.jpg";
 import image2 from "../assets/image2.JPG";
@@ -9,128 +9,131 @@ import image3 from "../assets/image3.JPG";
 import image4 from "../assets/image4.JPG";
 
 export default function Home() {
-  const images = [image1, image2, image3, image4];
+  // Memoized image list (prevents re-creation on every render)
+  const images = useMemo(
+    () => [image1, image2, image3, image4],
+    []
+  );
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // 🕒 Auto slide every 5 seconds
+  // Auto-slide (safe, minimal dependency)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 5000);
+
     return () => clearInterval(interval);
   }, [images.length]);
 
   return (
-    <div className="flex flex-col space-y-12 bg-gray-50 pb-16">
-      {/* ================= HERO SECTION ================= */}
-      <section className="bg-gradient-to-r from-orange-500 via-white to-green-600 rounded-lg shadow-md p-8 md:p-12 text-center">
+    <main className="bg-gray-50 pb-16 space-y-12">
+      {/* ================= HERO ================= */}
+      <section className="mx-auto max-w-6xl rounded-lg bg-gradient-to-r from-orange-500 via-white to-green-600 p-8 md:p-12 text-center shadow">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 leading-snug">
           Bienvenue sur la page officielle de{" "}
           <span className="text-orange-700">
-            l'Association des Étudiants Nigerien à Zaria
+            l'Association des Étudiants Nigériens à Zaria
           </span>
         </h1>
 
-        <p className="mt-4 text-gray-800 max-w-2xl mx-auto">
+        <p className="mx-auto mt-4 max-w-2xl text-gray-800">
           Une communauté d'étudiants unis par la diversité, la solidarité et le
-          savoir. Découvrez notre mission, notre vision et nos valeurs.
+          savoir.
         </p>
 
-        <div className="mt-6">
-          <Link
-            to="/about"
-            className="inline-block bg-green-700 hover:bg-green-800 text-white font-medium px-6 py-2 rounded-md transition duration-300 shadow-sm"
-          >
-            Découvrir plus
-          </Link>
-        </div>
+        <Link
+          to="/about"
+          className="mt-6 inline-block rounded-md bg-green-700 px-6 py-2 font-medium text-white transition hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
+        >
+          Découvrir plus
+        </Link>
       </section>
 
-      {/* ================= PRESIDENT SECTION ================= */}
-      <section className="bg-white p-6 md:p-10 rounded-lg shadow flex flex-col md:flex-row items-center gap-8 max-w-6xl mx-auto">
-        {/* Image */}
-        <div className="md:w-1/2 w-full">
+      {/* ================= PRESIDENT ================= */}
+      <section className="mx-auto max-w-6xl rounded-lg bg-white p-6 md:p-10 shadow">
+        <div className="flex flex-col gap-8 md:flex-row md:items-center">
           <img
             src={president}
             alt="Président de l'association"
-            className="w-full h-80 object-cover rounded-lg shadow-md border border-gray-200"
+            loading="lazy"
+            className="h-80 w-full rounded-lg object-cover md:w-1/2"
           />
-        </div>
 
-        {/* Text */}
-        <div className="md:w-1/2 w-full text-center md:text-left">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 border-l-4 border-green-600 pl-3 mb-4">
-            Le président de l'Association des Étudiants Nigériens à Zaria
-          </h2>
-          <h3 className="text-lg font-semibold text-orange-700 mb-2">
-            Président de l’AENIZ
-          </h3>
-          <p className="text-gray-700 leading-relaxed">
-            Salut tout le monde 👋, vous êtes les bienvenus sur notre plateforme
-            digitale. Ce site est un espace créé pour vous accompagner dans votre
-            parcours académique à Zaria, Kaduna, Nigeria. Nous croyons en la
-            solidarité, l’excellence et le partage entre étudiants internationaux
-            afin de bâtir une communauté unie et inspirante.
-          </p>
-          <p className="mt-4 text-gray-800 italic">
-            — Le Président, Association des Étudiants Nigériens à Zaria
-          </p>
+          <div className="md:w-1/2 text-center md:text-left">
+            <h2 className="mb-4 border-l-4 border-green-600 pl-3 text-2xl md:text-3xl font-bold text-gray-800">
+              Le président de l’Association
+            </h2>
+            <h3 className="mb-2 font-semibold text-orange-700">
+              Président de l’AENIZ
+            </h3>
+
+            <p className="leading-relaxed text-gray-700">
+              Bienvenue sur notre plateforme digitale. Cet espace accompagne
+              votre parcours académique à Zaria et favorise la solidarité,
+              l’excellence et le partage.
+            </p>
+
+            <p className="mt-4 italic text-gray-800">
+              — Le Président
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* ================= GALLERY SECTION ================= */}
-      <section className="p-6 md:p-10 bg-white rounded-lg shadow max-w-6xl mx-auto">
-        <h2 className="text-xl md:text-2xl font-semibold text-gray-800 border-l-4 border-orange-500 pl-3 mb-6">
+      {/* ================= GALLERY ================= */}
+      <section className="mx-auto max-w-6xl rounded-lg bg-white p-6 md:p-10 shadow">
+        <h2 className="mb-4 border-l-4 border-orange-500 pl-3 text-xl md:text-2xl font-semibold text-gray-800">
           Galerie de l'association
         </h2>
-        <p className="text-gray-600 mb-6">
-          Découvrez quelques moments forts de nos activités et événements récents.
+
+        <p className="mb-6 text-gray-600">
+          Quelques moments forts de nos activités.
         </p>
 
-        {/* Image grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           {images.map((img, idx) => (
-            <div
-              key={idx}
-              className={`overflow-hidden rounded-lg shadow hover:shadow-md transition-transform hover:scale-105 duration-300 ${
-                idx === currentIndex ? "ring-4 ring-green-400" : ""
+            <figure
+              key={img}
+              className={`overflow-hidden rounded-lg transition ${
+                idx === currentIndex
+                  ? "ring-2 ring-green-500"
+                  : "hover:shadow-md"
               }`}
             >
               <img
                 src={img}
-                alt={`Gallery ${idx + 1}`}
-                className="w-full h-56 object-cover"
+                alt={`Événement ${idx + 1}`}
+                loading="lazy"
+                className="h-56 w-full object-cover"
               />
-            </div>
+            </figure>
           ))}
         </div>
       </section>
 
-      {/* ================= MISSION SECTION ================= */}
-      <section className="bg-gray-50 p-6 md:p-8 rounded-lg shadow-sm max-w-6xl mx-auto">
-        <h2 className="text-xl md:text-2xl font-semibold text-gray-800 border-l-4 border-green-600 pl-3 mb-4">
+      {/* ================= MISSION ================= */}
+      <section className="mx-auto max-w-6xl rounded-lg bg-gray-50 p-6 md:p-8 shadow-sm">
+        <h2 className="mb-4 border-l-4 border-green-600 pl-3 text-xl md:text-2xl font-semibold text-gray-800">
           Notre mission
         </h2>
-        <p className="text-gray-700 leading-relaxed">
-          Notre association regroupant des étudiants étrangers au Nigeria a pour
-          mission d'accompagner et de guider les nouveaux étudiants souhaitant
-          poursuivre leurs études dans ce pays, en les formant pour devenir des
-          leaders visionnaires, en les aidant à maîtriser la langue anglaise et en
-          les préparant à des programmes d'entrepreneuriat innovants.
+        <p className="leading-relaxed text-gray-700">
+          Accompagner les étudiants étrangers au Nigeria, développer leurs
+          compétences linguistiques, académiques et entrepreneuriales afin de
+          former des leaders visionnaires.
         </p>
       </section>
 
-      {/* ================= VISION SECTION ================= */}
-      <section className="bg-white p-6 md:p-8 rounded-lg shadow max-w-6xl mx-auto">
-        <h2 className="text-xl md:text-2xl font-semibold text-gray-800 border-l-4 border-orange-500 pl-3 mb-4">
+      {/* ================= VISION ================= */}
+      <section className="mx-auto max-w-6xl rounded-lg bg-white p-6 md:p-8 shadow">
+        <h2 className="mb-4 border-l-4 border-orange-500 pl-3 text-xl md:text-2xl font-semibold text-gray-800">
           Notre vision
         </h2>
-        <p className="text-gray-700 leading-relaxed">
-          Notre vision est de former nos propres leaders qui, une fois diplômés,
-          retourneront dans leur pays respectif pour contribuer au développement
-          économique, social et culturel de leurs communautés.
+        <p className="leading-relaxed text-gray-700">
+          Former des diplômés engagés capables de contribuer activement au
+          développement de leurs communautés.
         </p>
       </section>
-    </div>
+    </main>
   );
 }
