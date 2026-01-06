@@ -1,53 +1,69 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 
-export default function Guide() {
+const Section = ({ title, accent = "orange", children }) => {
+  const borderColor =
+    accent === "green" ? "border-green-600" : "border-orange-500";
+
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-800 px-6 sm:px-12 py-12 space-y-12">
+    <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm space-y-4">
+      <h2
+        className={`border-l-4 ${borderColor} pl-3 text-2xl font-semibold text-gray-900`}
+      >
+        {title}
+      </h2>
+      {children}
+    </section>
+  );
+};
+
+export default function Guide() {
+  const admissionLinks = useMemo(
+    () => [
+      { label: "BACHELOR", path: "/table-ug" },
+      { label: "MASTER", path: "/table-ms" },
+      { label: "DOCTORAT (PhD)", path: "/table-ph" },
+    ],
+    []
+  );
+
+  return (
+    <main className="min-h-screen bg-gray-50 px-6 py-12 text-gray-800 sm:px-12 space-y-12">
       {/* ================= HEADER ================= */}
-      <section className="text-center max-w-4xl mx-auto">
-        <h1
-  className="text-3xl sm:text-4xl font-bold mb-4"
-  style={{ color: "#FF9933" }}
->
-  Bienvenue dans le guide général des programmes disponibles et de la vie sociale à Zaria
-</h1>
-
-
+      <header className="mx-auto max-w-4xl text-center space-y-4">
+        <h1 className="text-3xl sm:text-4xl font-bold text-orange-500">
+          Guide général des programmes et de la vie sociale à Zaria
+        </h1>
         <p className="text-lg text-gray-600">
-          Ce guide a été conçu pour aider les nouveaux étudiants internationaux à comprendre les démarches,
-          la vie à Zaria, et les programmes disponibles au Nigeria.
+          Ce guide aide les nouveaux étudiants internationaux à comprendre les
+          démarches, les programmes disponibles et la vie à Zaria.
         </p>
-      </section>
+      </header>
 
-      {/* ================= TRADUCTION DES DOCUMENTS ================= */}
-      <section className="bg-gradient-to-r from-orange-50 via-white to-green-50 shadow-sm rounded-2xl p-6 space-y-3 border border-gray-100">
-        <h2 className="text-2xl font-semibold text-gray-900 border-l-4 border-orange-500 pl-3">
-          Traduction des documents
-        </h2>
+      {/* ================= DOCUMENT TRANSLATION ================= */}
+      <Section title="Traduction des documents">
         <p className="text-gray-700">
-          La traduction de chaque document se fait à <span className="font-semibold">5000 naira</span>,
-          ce qui équivaut à environ <em>quelques dollars selon le taux du jour</em>.
+          La traduction de chaque document coûte{" "}
+          <span className="font-semibold">5000 naira</span>, soit l’équivalent de
+          quelques dollars selon le taux du jour.
         </p>
-      </section>
+      </Section>
 
-      {/* ================= BAIN LINGUISTIQUE ================= */}
-      <section className="bg-white rounded-2xl p-6 space-y-4 shadow border border-gray-100">
-        <h2 className="text-2xl font-semibold text-gray-900 border-l-4 border-green-600 pl-3">
-          Bain linguistique
-        </h2>
-        <p>Nous avons 3 à 4 centres de programmes de langue, qui sont :</p>
-        <ul className="list-disc pl-6 text-gray-700 space-y-1">
+      {/* ================= LANGUAGE PROGRAM ================= */}
+      <Section title="Bain linguistique" accent="green">
+        <p>Nous disposons de plusieurs centres de formation linguistique :</p>
+        <ul className="list-disc pl-6 space-y-1 text-gray-700">
           <li>IDRT Proficiency Program</li>
           <li>Centre de Zain</li>
           <li>Redemption College</li>
         </ul>
         <p>
-          Les frais d'inscription varient entre <span className="font-semibold">50,000</span> et
-          <span className="font-semibold"> 80,000 naira</span>, selon le centre choisi.
+          Frais d’inscription :{" "}
+          <span className="font-semibold">50,000 – 80,000 naira</span>.
         </p>
-        <p className="font-medium mt-2">Le programme de langue comprend les matières suivantes :</p>
-        <ul className="list-disc pl-6 text-gray-700 space-y-1">
+
+        <p className="font-medium">Matières enseignées :</p>
+        <ul className="list-disc pl-6 space-y-1 text-gray-700">
           <li>Grammaire</li>
           <li>Vocabulaire</li>
           <li>Phonétique</li>
@@ -55,116 +71,102 @@ export default function Guide() {
           <li>Communication</li>
           <li>Expression orale</li>
         </ul>
-      </section>
+      </Section>
 
       {/* ================= ABU ZARIA ================= */}
-      <section className="bg-gradient-to-r from-orange-50 via-white to-green-50 shadow rounded-2xl p-6 space-y-4 border border-gray-100">
-        <h2 className="text-2xl font-semibold text-gray-900 border-l-4 border-orange-500 pl-3">
-          ABU Zaria
-        </h2>
+      <Section title="ABU Zaria">
         <p className="text-gray-700">
-          Tout document doit être traduit avant d'entamer la procédure d’admission.
-          Notez que tous les programmes de ABU ont des exigences précises selon le département choisi.
+          Tous les documents doivent être traduits avant de commencer la
+          procédure d’admission. Les exigences varient selon le département.
         </p>
-        <p className="text-red-600 font-semibold">⚠️ IMPORTANT :</p>
-        <p>
-          Cliquez sur un lien ci-dessous pour consulter le guide et les critères d'admission :
-        </p>
-        <div className="flex flex-wrap justify-center gap-4 mt-4">
-          {[
-            { label: "BACHELOR", path: "/table-ug" },
-            { label: "MASTER", path: "/table-ms" },
-            { label: "DOCTORAT (PhD)", path: "/table-ph" },
-          ].map((link, i) => (
+
+        <p className="font-semibold text-red-600">IMPORTANT :</p>
+        <p>Consultez les critères d’admission selon le niveau :</p>
+
+        <nav className="flex flex-wrap justify-center gap-4 pt-2">
+          {admissionLinks.map((link) => (
             <Link
-              key={i}
+              key={link.path}
               to={link.path}
-              className="px-5 py-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition duration-300"
+              className="rounded-md bg-green-700 px-5 py-2 text-white transition hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
             >
               {link.label}
             </Link>
           ))}
-        </div>
-      </section>
+        </nav>
+      </Section>
 
-      {/* ================= AUTRES INSTITUTIONS ================= */}
-      <section className="bg-white rounded-2xl shadow p-6 border border-gray-100">
-        <h2 className="text-2xl font-semibold mb-3 text-gray-900 border-l-4 border-green-600 pl-3">
-          Autres institutions
-        </h2>
-        <ul className="list-disc pl-6 text-gray-700 space-y-1">
+      {/* ================= OTHER INSTITUTIONS ================= */}
+      <Section title="Autres institutions" accent="green">
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>
-            <span className="font-semibold">NITT</span> (Nigerian Institute of Transportation and Technology) — Institut des transports et logistique.
+            <span className="font-semibold">NITT</span> — Institut des transports
+            et de la logistique.
           </li>
           <li>
-            <span className="font-semibold">NILEST</span> (Nigerian Institute of Leather Research Science and Technology) — Institut du cuir (très important pour notre pays).
+            <span className="font-semibold">NILEST</span> — Institut du cuir,
+            important pour le développement industriel.
           </li>
         </ul>
-      </section>
+      </Section>
 
-      {/* ================= LOGEMENT ================= */}
-      <section className="bg-gradient-to-r from-green-50 via-white to-orange-50 rounded-2xl shadow p-6 space-y-4 border border-gray-100">
-        <h2 className="text-2xl font-semibold text-gray-900 border-l-4 border-orange-500 pl-3">
-          Logement à l'intérieur et à l'extérieur
-        </h2>
+      {/* ================= HOUSING ================= */}
+      <Section title="Logement à l'intérieur et à l'extérieur">
         <p>
-          Pour tout nouveau venu, nous avons une maison d'accueil où il sera logé pour
-          <span className="font-semibold"> 4 jours</span> maximum, en attendant de trouver un logement.
+          Une maison d’accueil est disponible pour{" "}
+          <span className="font-semibold">4 jours maximum</span> en attendant un
+          logement définitif.
         </p>
         <p>
-          NB : Chaque nouveau venu doit payer un montant de
-          <span className="font-semibold"> 5000 naira</span> pour l'accueil et la carte de membre.
+          Frais d’accueil et carte de membre :{" "}
+          <span className="font-semibold">5000 naira</span>.
         </p>
-        <ul className="list-disc pl-6 text-gray-700 space-y-1">
+
+        <ul className="list-disc pl-6 space-y-1 text-gray-700">
           <li>Sans douche : 80,000 – 100,000 naira</li>
           <li>Avec douche : 100,000 – 600,000 naira</li>
         </ul>
-        <p className="italic text-gray-600">NB : Les chambres sont vides.</p>
-      </section>
 
-      {/* ================= MATÉRIEL ESSENTIEL ================= */}
-      <section className="bg-white rounded-2xl p-6 shadow border border-gray-100">
-        <h2 className="text-2xl font-semibold mb-4 text-gray-900 border-l-4 border-green-600 pl-3">
-          Matériel de première nécessité
-        </h2>
-        <ul className="list-disc pl-6 text-gray-700 space-y-1">
+        <p className="italic text-gray-600">
+          NB : Les chambres sont louées vides.
+        </p>
+      </Section>
+
+      {/* ================= ESSENTIAL ITEMS ================= */}
+      <Section title="Matériel de première nécessité" accent="green">
+        <ul className="list-disc pl-6 space-y-1 text-gray-700">
           <li>Matelas</li>
-          <li>Gaz / fourneau / réchaud</li>
+          <li>Gaz / réchaud</li>
           <li>Marmite</li>
           <li>Seau</li>
-          <li>Autres (selon vos besoins)</li>
+          <li>Autres selon vos besoins</li>
         </ul>
-        <p className="mt-2 text-gray-700">
-          💡 <span className="font-semibold">Conseils :</span> venir avec vos matériaux est un atout.
-          Apporter du <em>goumba</em> pour <em>kounou</em> est fortement recommandé 😄.
-        </p>
-      </section>
 
-      {/* ================= VIE À ZARIA ================= */}
-      <section className="bg-gradient-to-r from-orange-50 via-white to-green-50 rounded-2xl shadow p-6 space-y-4 border border-gray-100">
-        <h2 className="text-2xl font-semibold text-gray-900 border-l-4 border-orange-500 pl-3">
-          Vie à Zaria
-        </h2>
-        <p>
-          <span className="font-semibold">Samaru</span> et <span className="font-semibold">Zango</span> sont les quartiers
-          les plus proches des institutions citées à Zaria, Kaduna, Nigeria.
+        <p className="text-gray-700">
+          <span className="font-semibold">Conseil :</span> venir avec votre
+          matériel est un avantage.
         </p>
-        <ul className="list-disc pl-6 text-gray-700 space-y-1">
-          <li>Évitez de sortir la nuit après 22h.</li>
-          <li>Faites attention aux personnes inconnues, surtout les nouvelles rencontres.</li>
-          <li>Notre équipe sera là pour vous aider à trouver un logement sûr.</li>
+      </Section>
+
+      {/* ================= LIFE IN ZARIA ================= */}
+      <Section title="Vie à Zaria">
+        <p>
+          <span className="font-semibold">Samaru</span> et{" "}
+          <span className="font-semibold">Zango</span> sont les quartiers les plus
+          proches des institutions.
+        </p>
+
+        <ul className="list-disc pl-6 space-y-1 text-gray-700">
+          <li>Évitez de sortir après 22h.</li>
+          <li>Soyez prudents avec les inconnus.</li>
+          <li>Notre équipe vous aidera à trouver un logement sûr.</li>
         </ul>
-      </section>
+      </Section>
 
-      {/* ================= FORMATIONS ================= */}
-      <section className="bg-white rounded-2xl p-6 shadow border border-gray-100">
-        <h2 className="text-2xl font-semibold text-gray-900 border-l-4 border-green-600 pl-3">
-          Formations
-        </h2>
-        <p>
-          Nos experts vous guideront dans différents domaines pour développer vos compétences :
-        </p>
-        <ul className="list-disc pl-6 text-gray-700 space-y-1">
+      {/* ================= TRAINING ================= */}
+      <Section title="Formations" accent="green">
+        <p>Formations disponibles pour développer vos compétences :</p>
+        <ul className="list-disc pl-6 space-y-1 text-gray-700">
           <li>Menuiserie</li>
           <li>Couture</li>
           <li>Fabrication de chaussures</li>
@@ -173,9 +175,7 @@ export default function Guide() {
           <li>Informatique de bureau (ASO)</li>
           <li>Réseau informatique (CISCO)</li>
         </ul>
-      </section>
-
-      
+      </Section>
     </main>
   );
 }
